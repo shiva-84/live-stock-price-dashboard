@@ -81,7 +81,7 @@ app.index_string = '''
             {%scripts%}
             {%renderer%}
         </footer>
-        <button class = "button1" "cursor:pointer" onclick="location.href='https://github.com/';"><b>Github</b></button>
+        <button class = "button1" "cursor:pointer" onclick="location.href='https://github.com/shiva-84/live-stock-price-dashboard';"><b>Github</b></button>
         <button class = "button2" "cursor:pointer" onclick="location.href='https://www.linkedin.com/in/priyanshu-katiyar';"><b>Linkedin</b></button>   
         <br>
     </body>
