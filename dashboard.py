@@ -18,6 +18,8 @@ ticker_list = ["TSLA", "GOOGL", "AAPL",  "MSFT", "AMZN"]
 # adding css
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
 
+server=app.server
+
 app.index_string = '''
 <!DOCTYPE html>
 <html>
