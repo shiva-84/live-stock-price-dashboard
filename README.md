@@ -1,2 +1,2 @@
-# live-stock-price-dashboard
+# Live Stock Price Dashboard 
 Live stock price dashboard using Dash
