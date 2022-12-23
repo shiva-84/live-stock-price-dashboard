@@ -13,12 +13,10 @@ import random
 # defining style colors
 colors = {"background": "#000000", "text": "#ffFFFF"}
 
-ticker_list = ["TSLA", "GOOGL", "AAPL",  "MSFT", "AMZN"]
+ticker_list = ["TSLA", "GOOGL", "AAPL", "MSFT", "AMZN"]
 
 # adding css
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
-
-server=app.server
 
 app.index_string = '''
 <!DOCTYPE html>
@@ -30,16 +28,16 @@ app.index_string = '''
         {%css%}
         <style>
         .button1 {
-        background-color: #000000 ;
+        background-color: #ffFFFF ;
         padding: 8px 6px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
         text-weight=bold;
-        color: #ffFFFF;
+        color: #000000;
         border-radius: 25px;
-        border: 1.5px solid #000000;
+        border: 1.5px solid #ffFFFF;
         margin=auto;
         position:relative; top:15px; left:20px;
         margin-bottom: 28px;
@@ -62,8 +60,8 @@ app.index_string = '''
         marginh-left=20px
         }
         .button1:hover {
-        background-color: #ffFFFF;
-        color: #000000;
+        background-color: #000000;
+        color: #ffFFFF;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
         }
         .button2:hover {
@@ -72,20 +70,19 @@ app.index_string = '''
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
         }
         .button:active {
-    
+
          }
         </style>
     </head>
-    <body style="background-color:#ffFFFF;">
+    <body style="background-color:#000000;">
         {%app_entry%}
         <footer>
             {%config%}
             {%scripts%}
             {%renderer%}
+            <button class = "button1" "cursor:pointer" onclick="location.href='https://github.com/shiva-84/live-stock-price-dashboard';"><b>Github</b></button>
+            <button class = "button2" "cursor:pointer" onclick="location.href='https://www.linkedin.com/in/priyanshu-katiyar';"><b>Linkedin</b></button>   
         </footer>
-        <button class = "button1" "cursor:pointer" onclick="location.href='https://github.com/shiva-84/live-stock-price-dashboard';"><b>Github</b></button>
-        <button class = "button2" "cursor:pointer" onclick="location.href='https://www.linkedin.com/in/priyanshu-katiyar';"><b>Linkedin</b></button>   
-        <br>
     </body>
 </html>
 '''
@@ -107,8 +104,8 @@ app.layout = html.Div(
                                         style={
                                             "textAlign": "center",
                                             "color": colors["text"],
-                                            "font-size" : "45px",
-                                            "font-weight" : "650"
+                                            "font-size": "45px",
+                                            "font-weight": "650"
                                         },
                                     )
                                 ]
@@ -151,9 +148,9 @@ app.layout = html.Div(
                                 options=[
                                     {"label": "line", "value": "Line"},
                                     {"label": "candlestick",
-                                        "value": "Candlestick"},
+                                     "value": "Candlestick"},
                                     {"label": "simple moving average",
-                                        "value": "SMA"},
+                                     "value": "SMA"},
                                     {
                                         "label": "exponential moving average",
                                         "value": "EMA",
@@ -169,7 +166,7 @@ app.layout = html.Div(
                                 "Apply",
                                 size="sm",
                                 color="success",
-                                id="submit-button",
+                                id="submit-button-state",
                                 className="mr-1",
                                 n_clicks=1,
                             ),
@@ -217,12 +214,11 @@ app.layout = html.Div(
     # output
     [Output("graph", "figure"), Output("live price", "figure")],
     # input
-    [Input("submit-button", "n_clicks")],
+    [Input("submit-button-state", "n_clicks")],
     # state
     [State("stock_name", "value"), State("chart", "value")],
 )
-def graph_generator(n_clicks, ticker, chart_name):
-
+def graph_genrator(n_clicks, ticker, chart_name):
     if n_clicks >= 1:  # Checking for user to click submit button
 
         # loading data
